@@ -1,3 +1,6 @@
+// TODO interpolate colors rgb()
+// TODO interpolate colors #hex
+// TODO browser prefixes
 (function(){
 
     var numRE = /(\d+\.?\d*)/,
