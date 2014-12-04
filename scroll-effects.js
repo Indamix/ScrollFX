@@ -3,7 +3,7 @@
 // TODO browser prefixes
 (function(){
 
-    var numRE = /(\d+\.?\d*)/,
+    var numRE = /(-?\d+\.?\d*)/,
         exported = false,
         options, win;
 
