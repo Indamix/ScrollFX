@@ -123,6 +123,7 @@
         }
       }
       item.elm.css(css);
+      if (item['class']) item.elm.attr('class', compile(item['class'], scrollTop));
     }
   }
 
