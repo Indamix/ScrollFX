@@ -1,0 +1,9 @@
+{
+  "name": "ScrollFX",
+  "version": "0.0.1",
+  "main": "scroll-fx.js",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ]
+}
