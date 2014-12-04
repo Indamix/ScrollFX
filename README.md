@@ -1,4 +1,4 @@
-# [Scroll Effects](http://indamix.github.com/scroll-effects/)
+# [ScrollFX](http://indamix.github.io/ScrollFX/)
 
 + Creating scrolling and parallax effects has never been so easy
 + Simple API similar to CSS3 animation / keyframes rule
@@ -10,9 +10,9 @@ If there is no CommonJS, AMD or jQuery, Scroll Effects registers itself in the g
 
 ## Usage
 ```javascript
-$(selector).scrollEffects(options);
+$(selector).scrollFX(options);
 
 // or
 
-$.fn.scrollEffects(options);
+$.fn.scrollFX(options);
 ```
