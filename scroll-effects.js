@@ -158,7 +158,7 @@
         //     debugger;
         // }
 
-        k = (data[i + 3] - data[i + 1]) / (data[i + 2] - data[i]);
+        var k = (data[i + 3] - data[i + 1]) / (data[i + 2] - data[i]);
         return data[i + 1] + k * (x - data[i]);
     }
 
