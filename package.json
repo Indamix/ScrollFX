@@ -1,0 +1,19 @@
+{
+  "name": "scroll-fx",
+  "version": "0.0.2",
+  "description": "+ Creating scrolling and parallax effects has never been so easy + Simple API similar to CSS3 animation / keyframes rule + Light and fast",
+  "main": "scroll-fx.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Indamix/ScrollFX.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Indamix/ScrollFX/issues"
+  },
+  "homepage": "https://github.com/Indamix/ScrollFX#readme"
+}
