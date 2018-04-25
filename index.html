@@ -1,99 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title></title>
-<!-- <script src="../lib/jquery.js"></script> -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="scroll-effects.js"></script>
-<style>
-    body {
-        margin: 0;
-        font: 12px/18px Helvetica;
-    }
-
-    #container {
-        padding: 100px;
-        background: url(http://subtlepatterns.com/patterns/batthern.png);
-    }
-
-    .elm {
-        width: 100px;
-        height: 100px;
-        line-height: 100px;
-        text-align: center;
-        font-size: 2em;
-        position: fixed;
-        border-radius: 100px;
-    }
-
-    #a {
-        background: #ff0;
-    }
-
-    #b {
-        background: #fc0;
-    }
-</style>
+    <meta charset="UTF-8">
+    <title>ScrollFX: Scroll Effects</title>
+    <link rel="stylesheet" href="demo/index.css"/>
 </head>
 <body>
 <div id="container"></div>
-<div id="a" class="elm">^_("=</div>
-<div id="b" class="elm">∑8></div>
-<script>
-var s = '';
-for (var i = 0; i < 1e4; ++i) {
-    if (i % 5e2 === 0) s += '<h2>Header</h2>';
-    s += Math.random().toString(36).replace('0.', '') + ' ';
-}
-$('#container').html(s);
-var bso = {};
-for (var i = 0; i < 100; ++i) {
-    bso[i * 20] = (Math.random() * 500 | 0) + 'px';
-}
-
-$.fn.scrollEffects([
-{
-        elm: $('#container'),
-        'background-position': function(top) { return 'center ' + top / 2 + 'px' }
-    },
-    {
-        elm: $('#a'),
-        opacity: {0: 0, 200: 1},
-        // top: function(top) { return top * .05 },
-        top: {
-            100: '100px', 
-            500: '700px',
-            1000: '0px',
-            1500: '0px',
-            2000: '700px'
-        },
-        left: {
-            500: '0px', 
-            1000: '500px',
-            1500: '0px',
-            2000: '500px'
-        },
-        '-webkit-transform': {
-            500:  'rotateY(0deg)',
-            1000: 'rotateY(180deg)'
-        }
-    }
-/*
-*/
-]);
-
-$('#b').scrollEffects({
-    opacity: {0: 0, 200: 1},
-    // left: bso,
-    left: function(top) { return Math.sin(top / 360) * 200 + 200 },
-    top: function(top) { return top * .1 },
-    '-webkit-transform': {
-        0:   'scale(0, 0) rotate(0deg)',
-        500: 'scale(1, 1) rotate(450deg)'
-    }
-})
-
-</script>
+<script src="scroll-fx.js"></script>
+<script src="demo/index.js"></script>
 </body>
 </html>

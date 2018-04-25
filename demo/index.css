@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  font: 12px/18px Helvetica;
+}
+
+.bg {
+  white-space: pre;
+  font-size: 1.5em;
+  padding: 50px;
+  margin: 100px;
+  border-radius: 10px;
+  position: relative;
+}
+
+li {
+  list-style: none;
+  font-size: 2em;
+}
