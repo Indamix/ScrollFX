@@ -1,4 +1,4 @@
-# [ScrollFX](http://indamix.github.io/ScrollFX/)
+# [ScrollFX](https://indamix.github.io/ScrollFX/)
 ## Lightweight scrolling effects with familiar CSS syntax
 
 + Creating scrolling and parallax effects has never been so easy
