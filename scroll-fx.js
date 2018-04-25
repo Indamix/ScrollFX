@@ -4,8 +4,9 @@
 (function () {
 
   var numRE = /(-?\d+\.?\d*)/,
+      started = false,
       exported = false,
-      options, win;
+      items = [];
 
   if (typeof window.jQuery === 'function') {
     $.fn.scrollFX = main;
@@ -34,12 +35,11 @@
       params = [params];
     }
 
-    if (options) {
-      options = options.concat(parse(params));
-    } else {
-      options = parse(params);
-      win = $(window);
-      win.on('scroll', onScroll);
+    items.push(parse(params));
+
+    if (!started) {
+      started = true;
+      window.addEventListener('scroll', onScroll);
     }
 
     onScroll();
@@ -108,11 +108,11 @@
   }
 
   function onScroll(e) {
-    var scrollTop = win.scrollTop(),
+    var scrollTop = window.scrollY,
         item, offset, css;
 
-    for (var i = options.length; i--;) {
-      item = options[i];
+    for (var i = items.length; i--;) {
+      item = items[i];
       css = {};
       for (var k in item) {
         if (k === 'elm') continue;
@@ -122,7 +122,7 @@
           css[k] = compile(item[k], scrollTop);
         }
       }
-      item.elm.css(css);
+      Object.assign(item.elm.style, css);
       if (item['class']) item.elm.attr('class', compile(item['class'], scrollTop));
     }
   }
