@@ -1,39 +1,15 @@
 // TODO interpolate colors rgb()
 // TODO interpolate colors #hex
 // TODO browser prefixes
-(function () {
-
+(function() {
   var numRE = /(-?\d+\.?\d*)/,
-      started = false,
-      exported = false,
-      hasJQuery = typeof window.jQuery === 'function',
-      items = [];
-
-  if (hasJQuery) {
-    $.fn.scrollFX = main;
-    exported = true;
-  }
-
-  if (typeof define !== 'undefined' && define.amd) {
-    define(function () {
-      return main;
-    });
-    exported = true;
-  }
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = main;
-    exported = true;
-  }
-
-  if (!exported) {
-    window.scrollFX = main;
-  }
+    started = false,
+    hasJQuery = typeof window.jQuery === 'function',
+    items = [];
 
   function main(params) {
     if (hasJQuery && this.length) {
       params.elm = this;
-      params = [params];
     }
 
     items.push(parse(params));
@@ -46,19 +22,14 @@
     onScroll();
   }
 
-  function parse(options) {
-    var item;
-    for (var i = options.length; i--;) {
-      item = options[i];
-      for (var k in item) {
-        if (k === 'elm') continue;
-        if (typeof item[k] === 'object') {
-          item[k] = precompile(item[k]);
-        }
+  function parse(item) {
+    for (var k in item) {
+      if (k !== 'elm' && typeof item[k] === 'object') {
+        item[k] = precompile(item[k]);
       }
     }
 
-    return options;
+    return item;
   }
 
   function precompile(options) {
@@ -68,7 +39,7 @@
     }
 
     var compiled = [],
-        s = '';
+      s = '';
 
     for (var i = 0, length = stops[1].length; i < length; i++) {
       var equal = true;
@@ -99,8 +70,9 @@
     if (typeof s === 'number') return [s];
 
     var a = s.split(numRE),
-        i, item;
-    for (i = a.length; i--;) {
+      i,
+      item;
+    for (i = a.length; i--; ) {
       item = parseFloat(a[i]);
       if (item === item) a[i] = item;
     }
@@ -110,9 +82,11 @@
 
   function onScroll(e) {
     var scrollTop = window.scrollY,
-        item, offset, css;
+      item,
+      offset,
+      css;
 
-    for (var i = items.length; i--;) {
+    for (var i = items.length; i--; ) {
       item = items[i];
       css = {};
       for (var k in item) {
@@ -124,7 +98,8 @@
         }
       }
       Object.assign(item.elm.style, css);
-      if (item['class']) item.elm.attr('class', compile(item['class'], scrollTop));
+      if (item['class'])
+        item.elm.attr('class', compile(item['class'], scrollTop));
     }
   }
 
@@ -138,14 +113,14 @@
 
   function interpolate(data, x) {
     var l = data.length;
-    if (x <= data[0])     return data[1];
+    if (x <= data[0]) return data[1];
     if (x >= data[l - 2]) return data[l - 1];
 
     var min = 0,
-        max = l - 2,
-        i;
+      max = l - 2,
+      i;
     while (max - min > 2) {
-      i = min + max >> 2 << 1;
+      i = ((min + max) >> 2) << 1;
       if (data[i] > x) {
         max = i;
       } else {
@@ -158,4 +133,26 @@
     return data[i + 1] + k * (x - data[i]);
   }
 
+  var exported = false;
+
+  if (hasJQuery) {
+    $.fn.scrollFX = main;
+    exported = true;
+  }
+
+  if (typeof define !== 'undefined' && define.amd) {
+    define(function() {
+      return main;
+    });
+    exported = true;
+  }
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = main;
+    exported = true;
+  }
+
+  if (!exported) {
+    window.scrollFX = main;
+  }
 })();
