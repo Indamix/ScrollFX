@@ -6,9 +6,10 @@
   var numRE = /(-?\d+\.?\d*)/,
       started = false,
       exported = false,
+      hasJQuery = typeof window.jQuery === 'function',
       items = [];
 
-  if (typeof window.jQuery === 'function') {
+  if (hasJQuery) {
     $.fn.scrollFX = main;
     exported = true;
   }
@@ -30,7 +31,7 @@
   }
 
   function main(params) {
-    if (window.$ && this instanceof $ && this.length) {
+    if (hasJQuery && this.length) {
       params.elm = this;
       params = [params];
     }
